@@ -7,8 +7,9 @@ MONGODB_URL = getenv('MONGODB_URL')
 MONGODB_USER = getenv('MONGODB_USER')
 MONGODB_PASSWORD = getenv('MONGODB_PASSWORD')
 MONGODB_COLLECTION = getenv('MONGODB_COLLECTION')
+MONGODB_DATABASE = getenv('MONGODB_DATABASE')
 
-if None in [MONGODB_URL, MONGODB_USER, MONGODB_PASSWORD, MONGODB_COLLECTION]:
+if None in [MONGODB_URL, MONGODB_USER, MONGODB_PASSWORD, MONGODB_COLLECTION, MONGODB_DATABASE]:
     print('Required .env variables not specified! ❌')
     exit(1)
 
@@ -23,7 +24,7 @@ def connect_to_database():
         print('Failed to connect to MongoDB ❌')
         exit(1)
     else:
-        return client['transactions']
+        return client[MONGODB_DATABASE]
 
 
 def get_user_collection(db):
